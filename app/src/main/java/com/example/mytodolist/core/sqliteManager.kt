@@ -22,8 +22,17 @@ class sqliteManager(private val context: Context) : SQLiteOpenHelper(context, DA
             return instance!!
         }
     }
-    override fun onCreate(db: SQLiteDatabase?) {
-        db?.execSQL("CREATE TABLE main (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)")
+    fun createTable(db: SQLiteDatabase) {
+        val createTableQuery = """
+        CREATE TABLE IF NOT EXISTS main (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL
+        );
+    """.trimIndent()
+        db.execSQL(createTableQuery)
+    }
+    override fun onCreate(db: SQLiteDatabase) {
+        createTable(db = db)
     }
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
 
