@@ -1,6 +1,8 @@
 package com.example.mytodolist
 
+import android.R
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -11,17 +13,28 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.mytodolist.core.sqliteManager
 import com.example.mytodolist.ui.theme.MyToDoListTheme
 
 class MainActivity : ComponentActivity() {
+    private lateinit var SqliteManager: sqliteManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        SqliteManager = sqliteManager.getInstance(this)
+        val db = SqliteManager.readableDatabase
+        var exp = "Hello World"
         setContent {
             MyToDoListTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    try {
+                        val cursor = db.rawQuery("SELECT * FROM main", null)
+                        cursor.close()
+                    }catch(e: Exception) {
+                        exp = "$e"
+                    }
                     Greeting(
-                        name = "Android",
+                        name = exp,
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -33,7 +46,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
-        text = "Hello $name!",
+        text = "$name",
         modifier = modifier
     )
 }
