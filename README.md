@@ -22,14 +22,34 @@
 ## Установка
 
 1. Склонируйте репозиторий:
-
+```
+bash
+   git clone https://github.com/Friendly2009/ToDoListAndroid
+```
 
 2. Откройте проект в Android Studio.
 
 3. Убедитесь, что у вас установлены все необходимые зависимости. В файле build.gradle вашего модуля должны быть следующие зависимости:
-
-   
-
+```
+dependencies {
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.graphics)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.compose.material3)
+    implementation("androidx.compose.material3:material3:1.1.0")
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
+}
+```
 4. Синхронизируйте проект.
 
 5. Запустите приложение на эмуляторе или реальном устройстве.
