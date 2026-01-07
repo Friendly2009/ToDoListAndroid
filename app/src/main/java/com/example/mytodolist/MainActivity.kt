@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.mytodolist.core.sqliteManager
 import com.example.mytodolist.ui.screens.MainScreen
+import com.example.mytodolist.ui.screens.settings
 
 class MainActivity : ComponentActivity() {
     private lateinit var SqliteManager: sqliteManager
@@ -22,7 +23,19 @@ class MainActivity : ComponentActivity() {
             val navController = rememberNavController()
             NavHost(navController = navController, startDestination = "main") {
                 composable("main"){
-                    MainScreen()
+                    MainScreen(newItem = {
+
+                    }, toItem = {
+                        navController.navigate("Item")
+                    }, settings = {
+                        navController.navigate("Settings")
+                    })
+                }
+                composable("Item") {
+
+                }
+                composable("Settings") {
+                    settings()
                 }
             }
         }
