@@ -11,9 +11,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.mytodolist.core.SettingsViewModel
 import com.example.mytodolist.core.sqliteManager
 import com.example.mytodolist.ui.screens.MainScreen
 import com.example.mytodolist.ui.screens.Settings
@@ -28,7 +30,8 @@ class MainActivity : ComponentActivity() {
         SqliteManager.createDatabase()
         val db = SqliteManager.readableDatabase
         setContent {
-            var isDarkTheme by remember { mutableStateOf(false) }
+            val settingsViewModel: SettingsViewModel = viewModel()
+            var isDarkTheme by remember { settingsViewModel.isDarkTheme }
             MyToDoListTheme(isDarkTheme) {
                 Surface(modifier = Modifier.fillMaxSize()) {
                     val navController = rememberNavController()
@@ -46,7 +49,7 @@ class MainActivity : ComponentActivity() {
 
                         }
                         composable("Settings") {
-                            Settings()
+                            Settings(viewModel = settingsViewModel)
                         }
                     }
                 }
