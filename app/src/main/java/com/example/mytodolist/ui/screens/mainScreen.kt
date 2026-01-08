@@ -17,33 +17,29 @@ import com.example.mytodolist.ui.theme.MyToDoListTheme
 @Composable
 fun MainScreen(newItem: () -> Unit, toItem: () -> Unit, settings: () -> Unit){
     val itemsIndb = (1..20).toList()
-    MyToDoListTheme(true) {
-        Surface(modifier = Modifier.fillMaxSize()) {
-            Box(modifier = Modifier.fillMaxSize()){
-                LazyColumn(
-                    modifier = Modifier.fillMaxSize().padding(top = 80.dp),
-                    contentPadding = PaddingValues(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    items(itemsIndb){ item-> Subject(toItem)}
-                }
-                FloatingActionButton(
-                    onClick = { },
-                    modifier = Modifier
-                        .align(Alignment.BottomEnd)
-                        .padding(16.dp)
-                ) {
-                    Icon(imageVector = Icons.Filled.Add,"Добавить")
-                }
-                FloatingActionButton(
-                    onClick = {settings()},
-                    modifier = Modifier
-                        .align(Alignment.TopEnd)
-                        .padding(16.dp)
-                ) {
-                    Icon(imageVector = Icons.Filled.Settings, "Настройки")
-                }
-            }
+    Box(modifier = Modifier.fillMaxSize()){
+        LazyColumn(
+            modifier = Modifier.fillMaxSize().padding(top = 80.dp),
+            contentPadding = PaddingValues(16.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            items(itemsIndb){ item-> Subject(toItem)}
+        }
+        FloatingActionButton(
+            onClick = { },
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(16.dp)
+        ) {
+            Icon(imageVector = Icons.Filled.Add,"Добавить")
+        }
+        FloatingActionButton(
+            onClick = {settings()},
+            modifier = Modifier
+                .align(Alignment.TopEnd)
+                .padding(16.dp)
+        ) {
+            Icon(imageVector = Icons.Filled.Settings, "Настройки")
         }
     }
 }
