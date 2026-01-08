@@ -11,17 +11,14 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.mytodolist.core.SettingsViewModel
 
 @Composable
-fun Settings(darkTheme: Boolean) {
-    var isDarkTheme by remember { mutableStateOf(false) }
+fun Settings(viewModel: SettingsViewModel = viewModel()) {
     Scaffold() { paddingValues ->
         Column(
             modifier = Modifier
@@ -38,9 +35,8 @@ fun Settings(darkTheme: Boolean) {
                 Text(text = "Темная тема")
                 Spacer(modifier = Modifier.weight(1f))
                 Switch(
-                    checked = isDarkTheme,
-                    onCheckedChange = { isDarkTheme = it },
-                    
+                    checked = viewModel.isDarkTheme.value,
+                    onCheckedChange = { viewModel.isDarkTheme.value = it },
                 )
             }
         }

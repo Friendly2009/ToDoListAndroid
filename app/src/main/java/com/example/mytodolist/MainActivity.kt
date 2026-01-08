@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
 
                         }
                         composable("Settings") {
-                            Settings(isDarkTheme)
+                            Settings()
                         }
                     }
                 }
