@@ -44,9 +44,11 @@ class MainActivity : ComponentActivity() {
                         }
                         composable("Item") {
 
-                }
-                composable("Settings") {
-                    settings()
+                        }
+                        composable("Settings") {
+                            Settings(isDarkTheme)
+                        }
+                    }
                 }
             }
         }
