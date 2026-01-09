@@ -51,7 +51,18 @@ class MainActivity : ComponentActivity() {
                             })
                         }
                         composable("Settings") {
-                            Settings(viewModel = settingsViewModel)
+                            Settings(
+                                viewModel = settingsViewModel,
+                                logout = {
+                                    navController.navigate("main")
+                                },
+                                developerScreen = {
+                                    navController.navigate("devScreen")
+                                }
+                            )
+                        }
+                        composable("devScreen"){
+
                         }
                     }
                 }
