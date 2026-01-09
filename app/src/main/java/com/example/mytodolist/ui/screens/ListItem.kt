@@ -1,4 +1,4 @@
-package com.example.mytodolist.core
+package com.example.mytodolist.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
