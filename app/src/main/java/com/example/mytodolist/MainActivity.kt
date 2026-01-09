@@ -16,6 +16,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.mytodolist.core.SettingsViewModel
+import com.example.mytodolist.core.item
 import com.example.mytodolist.core.sqliteManager
 import com.example.mytodolist.ui.screens.MainScreen
 import com.example.mytodolist.ui.screens.Settings
@@ -46,7 +47,7 @@ class MainActivity : ComponentActivity() {
                             })
                         }
                         composable("Item") {
-
+                            item()
                         }
                         composable("Settings") {
                             Settings(viewModel = settingsViewModel)
