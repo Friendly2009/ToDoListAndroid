@@ -47,7 +47,9 @@ class MainActivity : ComponentActivity() {
                             })
                         }
                         composable("Item") {
-                            item()
+                            item(logout = {
+                                navController.navigate("main")
+                            })
                         }
                         composable("Settings") {
                             Settings(viewModel = settingsViewModel)
