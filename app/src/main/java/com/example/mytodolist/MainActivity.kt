@@ -19,6 +19,7 @@ import com.example.mytodolist.ui.screens.item
 import com.example.mytodolist.core.sqliteManager
 import com.example.mytodolist.ui.screens.MainScreen
 import com.example.mytodolist.ui.screens.Settings
+import com.example.mytodolist.ui.screens.devScreen
 import com.example.mytodolist.ui.theme.MyToDoListTheme
 
 class MainActivity : ComponentActivity() {
@@ -62,7 +63,7 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                         composable("devScreen"){
-
+                            devScreen()
                         }
                     }
                 }
